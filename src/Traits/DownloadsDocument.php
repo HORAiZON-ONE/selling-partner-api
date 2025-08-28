@@ -23,7 +23,7 @@ trait DownloadsDocument
 {
     protected static string $defaultEncoding = 'UTF-8';
 
-    protected ?string $encoding;
+    public ?string $encoding;
 
     protected array $documentTypeInfo;
 
@@ -104,6 +104,14 @@ trait DownloadsDocument
                 );
             }
             throw $e;
+        }
+        
+        $parsed = Header::parse($response->getHeader('content-type'));
+        foreach ($parsed as $header) {
+            if (isset($header['charset'])) {
+                $this->encoding = $header['charset'];
+                break;
+            }
         }
 
         $stream = $response->getBody();
