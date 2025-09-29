@@ -90,6 +90,20 @@
     "schedulable": false,
     "quoteEnclosure": false
   },
+  "GET_VENDOR_REAL_TIME_TRAFFIC_REPORT": {
+    "contentType": "application/json",
+    "restricted": false,
+    "requestable": true,
+    "schedulable": false,
+    "quoteEnclosure": false
+  },
+  "GET_VENDOR_REAL_TIME_SALES_REPORT": {
+    "contentType": "application/json",
+    "restricted": false,
+    "requestable": true,
+    "schedulable": false,
+    "quoteEnclosure": false
+  },
   "GET_VENDOR_FORECASTING_REPORT": {
     "contentType": "application/json",
     "restricted": false,
