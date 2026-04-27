@@ -59,6 +59,11 @@ class SellerConnector extends SellingPartnerApi
         return new DataKioskV20231115\Api($this);
     }
 
+    public function deliveryByAmazonV20220701(): DeliveryByAmazonV20220701\Api
+    {
+        return new DeliveryByAmazonV20220701\Api($this);
+    }
+
     public function easyShipV20220323(): EasyShipV20220323\Api
     {
         return new EasyShipV20220323\Api($this);
@@ -147,6 +152,11 @@ class SellerConnector extends SellingPartnerApi
     public function ordersV0(): OrdersV0\Api
     {
         return new OrdersV0\Api($this);
+    }
+
+    public function ordersV20260101(): OrdersV20260101\Api
+    {
+        return new OrdersV20260101\Api($this);
     }
 
     public function productFeesV0(): ProductFeesV0\Api

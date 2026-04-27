@@ -17,12 +17,13 @@ final class TransactionInitiationRequest extends Dto
 {
     /**
      * @param  string  $sourceAccountId  The unique identifier of the source Amazon SW bank account from where the money needs to be debited
-     * @param  string  $description  Optional field to specify description for the transaction
      * @param  TransactionInstrumentDetails  $destinationTransactionInstrument  Request body to create transaction instrument, Amazon performs validation and screening (anti-money laundering measuers) on all the transaction instruments before executing a transaction thus it requires transaction instrument holder's contact details as well
      * @param  Currency  $sourceAmount  A currency type and amount.
      * @param  \DateTimeInterface  $requestTime  The transaction initiation request time in date-time format
      * @param  ?string  $destinationAccountId  Optional field to specify the unique identifier of the destination bank account where the money needs to be deposited
-     * @param  ?AccountHolderAddress  $destinationAccountHolderAddress  Address for bank account verification of the Payee. For example, this can be a person or business mailing address
+     * @param  ?string  $transactionDescription  A description of the transaction.
+     * @param  ?string  $customerPaymentReference  If the payment is for VAT (Value-Added-Tax) then enter VAT identification number in this field which will be mandatory. The length constraint is 140 characters and do not allow user to enter any sensitive information other than VAT-ID.
+     * @param  ?PayeeContactInformation  $payeeContactInformation  The contact information of the payee. This field is required when the request `bankAccountOwnershipType` is `THIRD_PARTY`. The contact information is used for payee verification and registration purposes.
      * @param  ?TransferRatePreview  $transferRateDetails  The fees and foreign exchange rates that apply to the transaction.
      *
      * If the fees are in terms of the `baseAmount` (source account) currency, then the effective rate is equal to **1 - (fees * `baseRate` / `baseAmount`)**.
@@ -33,12 +34,13 @@ final class TransactionInitiationRequest extends Dto
      */
     public function __construct(
         public string $sourceAccountId,
-        public string $description,
         public TransactionInstrumentDetails $destinationTransactionInstrument,
         public Currency $sourceAmount,
         public \DateTimeInterface $requestTime,
         public ?string $destinationAccountId = null,
-        public ?AccountHolderAddress $destinationAccountHolderAddress = null,
+        public ?string $transactionDescription = null,
+        public ?string $customerPaymentReference = null,
+        public ?PayeeContactInformation $payeeContactInformation = null,
         public ?TransferRatePreview $transferRateDetails = null,
     ) {}
 }
