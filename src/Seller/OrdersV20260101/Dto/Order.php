@@ -19,6 +19,7 @@ final class Order extends Dto
         'orderAliases' => Alias::class,
         'associatedOrders' => AssociatedOrder::class,
         'packages' => OrderPackage::class,
+        'fulfillmentOrders' => FulfillmentOrder::class,
     ];
 
     /**
@@ -30,13 +31,16 @@ final class Order extends Dto
      * @param  Alias[]|null  $orderAliases  Alternative identifiers that can be used to reference this order, such as seller-defined order numbers.
      * @param  ?string[]  $programs  Special programs associated with this order that may affect fulfillment or customer experience.
      *
-     * **Possible values**: `AMAZON_BAZAAR`, `AMAZON_BUSINESS`,  `AMAZON_EASY_SHIP`, `AMAZON_HAUL`, `DELIVERY_BY_AMAZON`, `FBM_SHIP_PLUS`, `IN_STORE_PICK_UP`, `PREMIUM`, `PREORDER`, `PRIME`
+     * **Possible values**: `AMAZON_BAZAAR`, `AMAZON_BUSINESS`, `AMAZON_EASY_SHIP`, `AMAZON_HAUL`, `DELIVERY_BY_AMAZON`, `FBM_SHIP_PLUS`, `INVOICE_BY_AMAZON`, `IN_STORE_PICK_UP`, `PREMIUM`, `PREORDER`, `PRIME`
      * @param  AssociatedOrder[]|null  $associatedOrders  Other orders that have a direct relationship to this order, such as replacement or exchange orders.
      * @param  ?Buyer  $buyer  Information about the customer who purchased the order.
      * @param  ?Recipient  $recipient  Information about the recipient to whom the order should be delivered.
      * @param  ?OrderProceeds  $proceeds  The money that the seller receives from the sale of the order.
+     * @param  ?OrderPayment  $payment  Payment information about the order.
+     * @param  ?OrderTax  $tax  Tax information about the order.
      * @param  ?OrderFulfillment  $fulfillment  Information about how the order is being processed, packed, and shipped to the customer.
      * @param  OrderPackage[]|null  $packages  Shipping packages created for this order, including tracking information. **Note:** Only available for merchant-fulfilled (FBM) orders.
+     * @param  FulfillmentOrder[]|null  $fulfillmentOrders  The list of fulfillment orders associated with this customer order. Each entry corresponds to one fulfillment unit created by Amazon for this order. **Note:** Only available for EasyShip orders at present.
      */
     public function __construct(
         public string $orderId,
@@ -50,7 +54,10 @@ final class Order extends Dto
         public ?Buyer $buyer = null,
         public ?Recipient $recipient = null,
         public ?OrderProceeds $proceeds = null,
+        public ?OrderPayment $payment = null,
+        public ?OrderTax $tax = null,
         public ?OrderFulfillment $fulfillment = null,
         public ?array $packages = null,
+        public ?array $fulfillmentOrders = null,
     ) {}
 }

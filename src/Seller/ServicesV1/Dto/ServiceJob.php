@@ -18,6 +18,7 @@ final class ServiceJob extends Dto
         'preferredAppointmentTimes' => AppointmentTime::class,
         'appointments' => Appointment::class,
         'associatedItems' => AssociatedItem::class,
+        'payments' => Payment::class,
     ];
 
     /**
@@ -30,11 +31,14 @@ final class ServiceJob extends Dto
      * @param  AppointmentTime[]|null  $preferredAppointmentTimes  A list of appointment windows preferred by the buyer. Included only if the buyer selected appointment windows when creating the order.
      * @param  Appointment[]|null  $appointments  A list of appointments.
      * @param  ?string  $serviceOrderId  The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
+     * @param  ?string[]  $productOrderIds  A list of associated product order IDs for the service job.
+     * @param  ?string[]  $trackingIds  A list of associated product tracking IDs for the service job.
      * @param  ?string  $marketplaceId  The marketplace identifier.
      * @param  ?string  $storeId  The Amazon-defined identifier for the region scope.
      * @param  ?Buyer  $buyer  Information about the buyer.
      * @param  AssociatedItem[]|null  $associatedItems  A list of items associated with the service job.
      * @param  ?ServiceLocation  $serviceLocation  Information about the location of the service job.
+     * @param  Payment[]|null  $payments  A list that contains payment information for the service job.
      */
     public function __construct(
         public ?\DateTimeInterface $createTime = null,
@@ -46,10 +50,13 @@ final class ServiceJob extends Dto
         public ?array $preferredAppointmentTimes = null,
         public ?array $appointments = null,
         public ?string $serviceOrderId = null,
+        public ?array $productOrderIds = null,
+        public ?array $trackingIds = null,
         public ?string $marketplaceId = null,
         public ?string $storeId = null,
         public ?Buyer $buyer = null,
         public ?array $associatedItems = null,
         public ?ServiceLocation $serviceLocation = null,
+        public ?array $payments = null,
     ) {}
 }

@@ -13,9 +13,6 @@
 ## Selling Partner API for PHP
 A PHP library for connecting to Amazon's [Selling Partner API](https://github.com/amzn/selling-partner-api-docs/).
 
-> [!WARNING]
-> Amazon has deprecated [most listings-related XML and flat-file feeds](https://developer-docs.amazon.com/sp-api/docs/sp-api-release-notes#feeds). I built an [**Amazon feed converter**](https://tools.highsidelabs.co) tool for easily converting the deprecated feeds to the newer `JSON_LISTINGS_FEED` format with a few lines of code. Read the full documentation [here](https://docs.highsidelabs.co/feed-transformer).
-
 ### Related packages
 
 * [`highsidelabs/laravel-spapi`](https://github.com/highsidelabs/laravel-spapi): A [Laravel](https://laravel.com) wrapper for this package that makes SP API integration in Laravel projects quick and easy. I also developed a [Laravel SP API starter project](https://tools.highsidelabs.co/starter-kit) to make developing SP API apps on Laravel as easy as possible.
@@ -42,7 +39,7 @@ If you've found any of my packages useful, please consider [becoming a Sponsor](
 
 ## Features
 
-* Supports all Selling Partner API operations (for Sellers and Vendors) as of 1/29/2026
+* Supports all Selling Partner API operations (for Sellers and Vendors) as of 5/24/2026
 * Automatically generates Restricted Data Tokens for all calls that require them -- no extra calls to the Tokens API needed
 * Includes a [`Document` helper class](#uploading-and-downloading-documents) for uploading and downloading feed/report documents
 * Can handle the end-to-end OAuth flow, from building authorization URLs to converting authorization codes into refresh tokens
@@ -262,6 +259,10 @@ $sellerConnector = SellingPartnerApi::seller(/* ... */);
 * **Delivery by Amazon API (v2022-07-01)** ([docs](https://developer-docs.amazon.com/sp-api/reference/delivery-by-amazon-v2022-07-01))
     ```php
     $deliveryByAmazonApi = $sellerConnector->deliveryByAmazonV20220701();
+    ```
+* **External Fulfillment API (v2024-09-11)** ([docs](https://developer-docs.amazon.com/sp-api/reference/external-fulfillment-shipping-v2024-09-11))
+    ```php
+    $externalFulfillmentApi = $sellerConnector->externalFulfillmentV20240911();
     ```
 * **EasyShip API (v2022-03-23)** ([docs](https://developer-docs.amazon.com/sp-api/docs/easy-ship-api-v2022-03-23-reference))
     ```php

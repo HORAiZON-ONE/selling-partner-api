@@ -16,6 +16,7 @@ final class OrderBuyerInfo extends Dto
 {
     protected static array $attributeMap = [
         'amazonOrderId' => 'AmazonOrderId',
+        'buyerEmail' => 'BuyerEmail',
         'buyerName' => 'BuyerName',
         'buyerCounty' => 'BuyerCounty',
         'buyerTaxInfo' => 'BuyerTaxInfo',
@@ -24,6 +25,7 @@ final class OrderBuyerInfo extends Dto
 
     /**
      * @param  string  $amazonOrderId  An Amazon-defined order identifier, in 3-7-7 format.
+     * @param  ?string  $buyerEmail  The anonymized email address of the buyer.
      * @param  ?string  $buyerName  The buyer name or the recipient name.
      * @param  ?string  $buyerCounty  The county of the buyer.
      *
@@ -33,6 +35,7 @@ final class OrderBuyerInfo extends Dto
      */
     public function __construct(
         public string $amazonOrderId,
+        public ?string $buyerEmail = null,
         public ?string $buyerName = null,
         public ?string $buyerCounty = null,
         public ?BuyerTaxInfo $buyerTaxInfo = null,
